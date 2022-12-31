@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
+import Headline from "./components/Headline.vue";
 </script>
 
 <template>
-  <header>Hello World</header>
+  <Headline />
   <RouterView />
 </template>
-
-<style scoped lang="scss">
-header {
-  color: red;
-}
-</style>
