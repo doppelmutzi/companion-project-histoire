@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
 import Headline from "./components/Headline.vue";
+import Todos from "./views/Todos.vue";
 </script>
 
 <template>
   <Headline />
-  <RouterView />
+  <Todos />
 </template>
