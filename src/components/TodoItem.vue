@@ -1,0 +1,91 @@
+<template>
+  <div>
+    <div class="todo-item">
+      <button class="check-button" @click="handleCheckClick()">
+        <span v-show="todo.checked" class="check">✔️</span>
+      </button>
+      <div class="item-label" :class="{ 'is-crossed-out': isCrossedOut }">
+        {{ todo.label }}
+        <div>{{ todo.date }}</div>
+      </div>
+      <DeleteButton :on-click="handleDeleteClick" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import DeleteButton from "./DeleteButton.vue";
+import { useTodosStore } from "@/stores/todos";
+import { computed } from "vue";
+
+// TODO hover feature
+
+interface Props {
+  todo: {
+    id: number;
+    label: string;
+    date: string;
+    checked: boolean;
+  };
+}
+
+const { toggleCheckTodo, removeTodo } = useTodosStore();
+
+const props = defineProps<Props>();
+
+console.log("render Todo Item", props.todo);
+
+const isCrossedOut = computed(() => props.todo.checked === true);
+
+const handleDeleteClick = () => {
+  console.log("handleDeleteClick");
+  removeTodo(props.todo);
+};
+
+const handleCheckClick = () => {
+  console.log("handleCheckClick");
+  toggleCheckTodo(props.todo);
+};
+</script>
+
+<style scoped lang="scss">
+.todo-item {
+  background: white;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border: 0 solid #e6e6e6;
+  border-bottom-width: 1px;
+}
+
+.check-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #a0a0a0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.check {
+  font-size: 20px;
+  color: #9bd9cd;
+}
+
+.item-label {
+  flex: 1;
+  font-size: 24px;
+  margin: 0 24px;
+
+  > div {
+    display: block;
+    font-size: 70%;
+  }
+
+  &.is-crossed-out {
+    text-decoration: line-through;
+  }
+}
+</style>

@@ -10,12 +10,12 @@ import { defineStore } from "pinia";
 //   return { count, doubleCount, increment };
 // });
 
-type Todo = {
+export interface Todo {
   id: number;
   label: string;
   date: string;
   checked: boolean;
-};
+}
 
 // eslint-disable-next-line no-unused-vars
 enum FilteredIndex {
@@ -34,7 +34,7 @@ export const useTodosStore = defineStore("todos", {
         id: 1,
         label: "checked todo",
         date: "today",
-        checked: true,
+        checked: false,
       },
       {
         id: 2,
@@ -64,6 +64,21 @@ export const useTodosStore = defineStore("todos", {
   actions: {
     addTodo(todo: Todo) {
       this.todos.push(todo);
+    },
+    toggleCheckTodo(todo: Todo) {
+      const index = this.todos.findIndex((item) => item.id === todo.id);
+      console.log("toggle index", index);
+      const updatedTodos = [...this.todos];
+      updatedTodos[index] = {
+        ...todo,
+        checked: !todo.checked,
+      };
+      console.log(updatedTodos);
+      this.todos = updatedTodos;
+    },
+    removeTodo(todo: Todo) {
+      console.log("remove", todo);
+      this.todos = [...this.todos.filter((item) => item.id != todo.id)];
     },
     setFilterIndex(index: FilteredIndex) {
       this.filterIndex = index;

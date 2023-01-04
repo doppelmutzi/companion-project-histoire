@@ -1,5 +1,6 @@
 export default {
-  getPreferedLang: () => (navigator.language.startsWith("en") ? "en" : "de"),
+  getPreferedLang: (): string =>
+    navigator.language.startsWith("en") ? "en" : "de",
   todoInput: {
     placeholder: {
       en: "What needs to be done?",
