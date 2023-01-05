@@ -6,7 +6,8 @@
 
 <script setup lang="ts">
 import { useTodosStore } from "@/stores/todos";
+import { storeToRefs } from "pinia";
 import TodoItem from "./TodoItem.vue";
 
-const { filteredTodos } = useTodosStore();
+const { filteredTodos } = storeToRefs(useTodosStore());
 </script>

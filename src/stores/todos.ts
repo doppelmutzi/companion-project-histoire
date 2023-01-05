@@ -1,3 +1,4 @@
+import theme from "@/theme";
 import { defineStore } from "pinia";
 
 // export const useCounterStore = defineStore("counter", () => {
@@ -29,6 +30,7 @@ enum FilteredIndex {
 
 export const useTodosStore = defineStore("todos", {
   state: () => ({
+    theme: theme.DARK,
     todos: [
       {
         id: 1,
@@ -60,6 +62,11 @@ export const useTodosStore = defineStore("todos", {
         return state.todos.filter((todo) => todo.checked);
       }
     },
+    todosChecked: (state) =>
+      state.todos.reduce((count, todo) => {
+        if (todo.checked) return count + 1;
+        return count;
+      }, 0),
   },
   actions: {
     addTodo(todo: Todo) {
