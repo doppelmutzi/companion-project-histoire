@@ -8,6 +8,6 @@ module.exports = {
   rules: {
     "selector-list-comma-newline-before": "never-multi-line",
     "color-function-notation": "legacy",
-    "alpha-value-notation": "percentage",
+    "alpha-value-notation": "number",
   },
 };
