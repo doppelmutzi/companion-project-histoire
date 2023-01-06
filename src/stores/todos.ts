@@ -19,7 +19,7 @@ export interface Todo {
 }
 
 // eslint-disable-next-line no-unused-vars
-enum FilteredIndex {
+export enum FilterIndex {
   // eslint-disable-next-line no-unused-vars
   ALL = 0,
   // eslint-disable-next-line no-unused-vars
@@ -45,7 +45,7 @@ export const useTodosStore = defineStore("todos", {
         checked: true,
       },
     ] as Array<Todo>,
-    filterIndex: FilteredIndex.ALL,
+    filterIndex: FilterIndex.ALL,
   }),
   getters: {
     todosLeft: (state) =>
@@ -54,14 +54,15 @@ export const useTodosStore = defineStore("todos", {
         return count;
       }, 0),
     filteredTodos: (state) => {
-      if (state.filterIndex === FilteredIndex.ALL) {
+      if (state.filterIndex === FilterIndex.ALL) {
         return state.todos;
-      } else if (state.filterIndex === FilteredIndex.UNCHECKED) {
+      } else if (state.filterIndex === FilterIndex.UNCHECKED) {
         return state.todos.filter((todo) => !todo.checked);
       } else {
         return state.todos.filter((todo) => todo.checked);
       }
     },
+    // TODO todosLeft aufrufen
     todosChecked: (state) =>
       state.todos.reduce((count, todo) => {
         if (todo.checked) return count + 1;
@@ -87,7 +88,11 @@ export const useTodosStore = defineStore("todos", {
       console.log("remove", todo);
       this.todos = [...this.todos.filter((item) => item.id != todo.id)];
     },
-    setFilterIndex(index: FilteredIndex) {
+    clearCheckedTodos() {
+      const uncheckedTodos = this.todos.filter((todo) => !todo.checked);
+      this.todos = [...uncheckedTodos];
+    },
+    setFilterIndex(index: FilterIndex) {
       this.filterIndex = index;
     },
   },

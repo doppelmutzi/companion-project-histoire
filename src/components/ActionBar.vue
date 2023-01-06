@@ -4,7 +4,7 @@
     <div class="filter-buttons">
       <FilterButtons />
     </div>
-    <ClearButton v-if="showClearButton" />
+    <ClearButton v-if="showClearButton" :on-click="handleClearClick" />
   </div>
   <div class="drop-shadow" />
 </template>
@@ -18,7 +18,9 @@ import { storeToRefs } from "pinia";
 import { computed } from "vue";
 
 const { theme, todosChecked } = storeToRefs(useTodosStore());
+const { clearCheckedTodos } = useTodosStore();
 const showClearButton = computed(() => todosChecked.value > 0);
+const handleClearClick = () => clearCheckedTodos();
 </script>
 
 <style scoped lang="scss">
