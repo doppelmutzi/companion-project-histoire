@@ -19,7 +19,7 @@ import { computed } from "vue";
 
 const { theme, todosChecked } = storeToRefs(useTodosStore());
 const { clearCheckedTodos } = useTodosStore();
-const showClearButton = computed(() => todosChecked.value > 0);
+const showClearButton = computed(() => todosChecked.value);
 const handleClearClick = () => clearCheckedTodos();
 </script>
 

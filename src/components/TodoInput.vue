@@ -20,7 +20,7 @@ const lang: string = getPreferedLang();
 // FIXME how to type this?
 const placeholder = todoInput.placeholder[lang];
 
-let inputValue = ref("asdf");
+let inputValue = ref("");
 
 const { addTodo } = useTodosStore();
 
@@ -40,7 +40,12 @@ const onEnter = (evt: Event) => {
 
 <style scoped lang="scss">
 .todo-input {
+  --text-color: rgba(175, 47, 47);
+
   display: flex;
+  border: 0 solid #e6e6e6;
+  border-bottom-width: 1px;
+  padding: 5px 0;
 
   > * {
     height: 50px;
@@ -51,10 +56,16 @@ const onEnter = (evt: Event) => {
     background: white;
     border: 0;
     font-size: 24px;
+    caret-color: var(--text-color);
+    padding: 3px 10px;
 
     &::placeholder {
       color: #d9d9d9;
       font-style: italic;
+    }
+
+    &:focus-visible {
+      outline-color: var(--text-color);
     }
   }
 }

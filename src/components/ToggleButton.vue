@@ -2,6 +2,7 @@
   <div
     class="toggle-button"
     :class="{ 'all-checked': allChecked, 'is-visible': isVisible }"
+    @click="onToggle"
   >
     <button>&or;</button>
   </div>
@@ -9,12 +10,12 @@
 
 <script setup lang="ts">
 import { useTodosStore } from "@/stores/todos";
-import { computed, toRaw } from "vue";
+import { computed } from "vue";
 
-const { todosLeft, todos } = useTodosStore();
-console.log(toRaw(todos));
-const allChecked = computed(() => todosLeft === 0);
-const isVisible = computed(() => todos.length > 0);
+const store = useTodosStore();
+const allChecked = computed(() => store.todosLeft === 0);
+const isVisible = computed(() => store.todos.length > 0);
+const onToggle = () => store.toggleTodos();
 </script>
 
 <style scoped lang="scss">
@@ -32,6 +33,7 @@ const isVisible = computed(() => todos.length > 0);
     background: none;
     color: inherit;
     display: none;
+    cursor: pointer;
   }
 
   &.is-visible > button {

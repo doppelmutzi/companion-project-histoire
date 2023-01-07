@@ -62,30 +62,31 @@ export const useTodosStore = defineStore("todos", {
         return state.todos.filter((todo) => todo.checked);
       }
     },
-    // TODO todosLeft aufrufen
-    todosChecked: (state) =>
-      state.todos.reduce((count, todo) => {
-        if (todo.checked) return count + 1;
-        return count;
-      }, 0),
+    todosChecked(): boolean {
+      return this.todosLeft !== this.todos.length;
+    },
   },
   actions: {
     addTodo(todo: Todo) {
       this.todos.push(todo);
     },
+    toggleTodos() {
+      const toggledTodos = this.todos.map((todo) => ({
+        ...todo,
+        checked: this.todosLeft > 0,
+      }));
+      this.todos = toggledTodos;
+    },
     toggleCheckTodo(todo: Todo) {
       const index = this.todos.findIndex((item) => item.id === todo.id);
-      console.log("toggle index", index);
       const updatedTodos = [...this.todos];
       updatedTodos[index] = {
         ...todo,
         checked: !todo.checked,
       };
-      console.log(updatedTodos);
       this.todos = updatedTodos;
     },
     removeTodo(todo: Todo) {
-      console.log("remove", todo);
       this.todos = [...this.todos.filter((item) => item.id != todo.id)];
     },
     clearCheckedTodos() {

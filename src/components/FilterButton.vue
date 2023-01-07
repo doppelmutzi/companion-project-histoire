@@ -34,5 +34,6 @@ button {
   border-radius: 3px;
   background: none;
   cursor: pointer;
+  display: block;
 }
 </style>

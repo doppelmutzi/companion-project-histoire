@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="todo-item">
+    <div class="todo-item" @mouseover="onMouseOver" @mouseout="onMouseOut">
       <button class="check-button" @click="handleCheckClick()">
         <span v-show="todo.checked" class="check">✔️</span>
       </button>
@@ -8,7 +8,7 @@
         {{ todo.label }}
         <div>{{ todo.date }}</div>
       </div>
-      <DeleteButton :on-click="handleDeleteClick" />
+      <DeleteButton v-show="hover" :on-click="handleDeleteClick" />
     </div>
   </div>
 </template>
@@ -16,9 +16,16 @@
 <script setup lang="ts">
 import DeleteButton from "./DeleteButton.vue";
 import { useTodosStore } from "@/stores/todos";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
-// TODO hover feature
+const hover = ref(false);
+
+const onMouseOver = () => {
+  return (hover.value = true);
+};
+const onMouseOut = () => {
+  return (hover.value = false);
+};
 
 interface Props {
   todo: {
@@ -32,18 +39,13 @@ interface Props {
 const { toggleCheckTodo, removeTodo } = useTodosStore();
 
 const props = defineProps<Props>();
-
-console.log("render Todo Item", props.todo);
-
 const isCrossedOut = computed(() => props.todo.checked === true);
 
 const handleDeleteClick = () => {
-  console.log("handleDeleteClick");
   removeTodo(props.todo);
 };
 
 const handleCheckClick = () => {
-  console.log("handleCheckClick");
   toggleCheckTodo(props.todo);
 };
 </script>
@@ -70,8 +72,8 @@ const handleCheckClick = () => {
 }
 
 .check {
-  font-size: 20px;
-  color: #9bd9cd;
+  color: transparent;
+  text-shadow: 0 0 0 #0dbe9b;
 }
 
 .item-label {
