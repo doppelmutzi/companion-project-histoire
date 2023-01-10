@@ -4,6 +4,6 @@ import Todos from "./views/Todos.vue";
 </script>
 
 <template>
-  <Headline />
+  <Headline font-color="red" text="todos" />
   <Todos />
 </template>

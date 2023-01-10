@@ -1,10 +1,35 @@
 <template>
-  <h1>todos</h1>
+  <h1 :style="{ color }">{{ text }}</h1>
 </template>
+<script lang="ts" setup>
+import { type PropType, computed } from "vue";
 
+export type HeadlineColor = "green" | "red" | "gray";
+
+const prop = defineProps({
+  fontColor: {
+    type: String as PropType<HeadlineColor>,
+    default: "red",
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+});
+
+const color = computed(() => {
+  switch (prop.fontColor) {
+    case "green":
+      return "#0dbe9b";
+    case "gray":
+      return `rgb(109, 117, 130)`;
+    default:
+      return `rgba(175, 47, 47`;
+  }
+});
+</script>
 <style scoped lang="scss">
 h1 {
-  color: rgba(175, 47, 47, 0.15);
   font-size: 100px;
   font-weight: 100;
   text-align: center;
