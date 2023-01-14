@@ -19,7 +19,7 @@ const initState = () => ({
 </script>
 
 <template>
-  <Story title="Headline" group="hello">
+  <Story title="components/Headline">
     <Variant
       title="assigned color prop"
       :init-state="initState"

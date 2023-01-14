@@ -1,14 +1,9 @@
 <script lang="ts" setup>
 import ActionBar from "@/components/ActionBar.vue";
 import { useTodosStore, FilterIndex } from "@/stores/todos";
+import type { AppSetup } from "./histoireHelper";
 
 // TODO auto-props-disabled warum nochmal?
-
-type AppSetup = {
-  variant: {
-    title: string;
-  };
-};
 
 const appSetup = (appSetup: AppSetup) => {
   const variant = appSetup.variant.title;
@@ -53,7 +48,7 @@ const appSetup = (appSetup: AppSetup) => {
 </script>
 
 <template>
-  <Story title="components/ActionBar" :setup-app="appSetup">
+  <Story title="components/ActionBar/ActionBar" :setup-app="appSetup">
     <Variant title="items left">
       <ActionBar />
     </Variant>

@@ -1,5 +1,6 @@
 import theme from "@/theme";
 import { defineStore } from "pinia";
+import { toRaw } from "vue";
 
 // export const useCounterStore = defineStore("counter", () => {
 //   const count = ref(0);
@@ -67,6 +68,11 @@ export const useTodosStore = defineStore("todos", {
     },
   },
   actions: {
+    toggleDarkMode() {
+      const currentTheme = toRaw(this.theme);
+      if (currentTheme === theme.DARK) this.theme = theme.LIGHT;
+      else this.theme = theme.DARK;
+    },
     addTodo(todo: Todo) {
       this.todos.push(todo);
     },
