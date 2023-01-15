@@ -2,16 +2,6 @@ import theme from "@/theme";
 import { defineStore } from "pinia";
 import { toRaw } from "vue";
 
-// export const useCounterStore = defineStore("counter", () => {
-//   const count = ref(0);
-//   const doubleCount = computed(() => count.value * 2);
-//   function increment() {
-//     count.value++;
-//   }
-
-//   return { count, doubleCount, increment };
-// });
-
 export interface Todo {
   id: number;
   label: string;
