@@ -30,7 +30,7 @@ const { backgroundColor, color } = theme.value;
 button {
   border-style: solid;
   border-width: 1px;
-  padding: 4px;
+  padding: 7px;
   border-radius: 3px;
   background: none;
   cursor: pointer;
