@@ -3,8 +3,6 @@ import ActionBar from "@/components/ActionBar.vue";
 import { useTodosStore, FilterIndex } from "@/stores/todos";
 import type { AppSetup } from "./histoireHelper";
 
-// TODO auto-props-disabled warum nochmal?
-
 const appSetup = (appSetup: AppSetup) => {
   const variant = appSetup.variant.title;
   if (variant === "items left") {
