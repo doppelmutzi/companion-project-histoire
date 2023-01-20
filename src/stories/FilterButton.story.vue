@@ -10,7 +10,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <Story title="components/ActionBar/FilterButton">
+  <Story title="components/ActionBar/FilterButton" auto-props-disabled>
     <div class="story-wrapper">
       <FilterButton label="completed" :active="true" :on-click="onClick" />
     </div>
