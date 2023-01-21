@@ -17,7 +17,7 @@ const initState = (): TodoItemState => ({
 </script>
 
 <template>
-  <Story title="components/TodoItem">
+  <Story title="components/TodoItem" auto-props-disabled>
     <Variant title="structured controls" :init-state="initState">
       <template #default="{ state }">
         <TodoItem :todo="state.todo" />
