@@ -1,21 +1,11 @@
-<docs lang="md">
-    # Headline
-
-    Todo
-</docs>
 <script lang="ts" setup>
 import type { HeadlineColor } from "@/components/Headline.vue";
 import Headline from "@/components/Headline.vue";
 
-const initState = () => ({
+const initState = (): { text: string; fontColor: HeadlineColor } => ({
   text: "todos",
-  fontColor: "red" as HeadlineColor,
+  fontColor: "red",
 });
-// TODO https://icones.js.org/
-
-// TODO https://histoire.dev/reference/vue3/variant.html
-// TODO https://histoire.dev/reference/vue3/story.html
-// icon, group, app setup etc.
 </script>
 
 <template>
@@ -24,8 +14,6 @@ const initState = () => ({
       title="color prop (dropdown)"
       :init-state="initState"
       auto-props-disabled
-      icon="lucide:car"
-      icon-color="#8B5CF6"
     >
       <template #default="{ state }">
         <Headline :text="state.text" :font-color="state.fontColor" />

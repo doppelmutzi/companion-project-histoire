@@ -7,14 +7,13 @@ export default defineConfig({
     base: process.env.HISTOIRE_BASE || "/",
   },
   theme: {
-    title: "TXP-Stack Project",
+    title: "LogRocket companion project",
     logo: {
       square: "./assets/images/logrocket-logo-square.png",
       light: "./assets/images/logrocket-logo.png",
       dark: "./assets/images/logrocket-logo-dark.svg",
     },
     logoHref: "https://blog.logrocket.com/",
-    // TODO colors
     colors: {
       gray: defaultColors.zinc,
       primary: defaultColors.pink,
